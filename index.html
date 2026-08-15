@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Parves Bappi | Data Analyst</title>
+  <meta name="description" content="Parves Bappi — Data Analyst focused on business intelligence, dashboards, data automation, and actionable business insights.">
+  <meta name="author" content="Parves Bappi">
+  <meta property="og:title" content="Parves Bappi | Data Analyst">
+  <meta property="og:description" content="Data Analyst focused on analytics, BI dashboards, data automation, and business insights.">
+  <meta property="og:url" content="https://parvesbappi.com">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Tailwind CDN: convenient for a zero-cost static Cloudflare Pages site -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Fonts + icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Manrope", "sans-serif"]
+          },
+          colors: {
+            ink: "#0f172a",
+            brand: "#2563eb",
+            cyanx: "#06b6d4"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --brand: #2563eb;
+      --brand-dark: #1d4ed8;
+      --cyan: #06b6d4;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--surface-alt);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Manrope", sans-serif;
+    }
+
+    .dark body { background: #020617; color: #e2e8f0; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 55%, #06b6d4 100%);
+    }
+
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(37, 99, 235, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, .045) 1px, transparent 1px);
+      background-size: 42px 42px;
+    }
+
+    .dark .hero-grid {
+      background-image:
+        linear-gradient(rgba(96, 165, 250, .055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96, 165, 250, .055) 1px, transparent 1px);
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(85px);
+      pointer-events: none;
+      opacity: .18;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(0,-20px,0) scale(1.04); }
+    }
+
+    .glass {
+      background: rgba(255,255,255,.76);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(226,232,240,.9);
+    }
+
+    .dark .glass {
+      background: rgba(15,23,42,.78);
+      border-color: rgba(51,65,85,.8);
+    }
+
+    .card {
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 45px rgba(15,23,42,.09);
+      border-color: rgba(37,99,235,.28);
+    }
+
+    .dark .card:hover {
+      box-shadow: 0 18px 45px rgba(0,0,0,.28);
+      border-color: rgba(96,165,250,.3);
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-kicker::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--brand), var(--cyan));
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -.035em;
+    }
+
+    .nav-link {
+      color: #475569;
+      transition: color .2s ease, background .2s ease;
+    }
+
+    .dark .nav-link { color: #cbd5e1; }
+
+    .nav-link:hover {
+      color: var(--brand);
+      background: rgba(37,99,235,.07);
+    }
+
+    .profile-wrap {
+      position: relative;
+      width: min(520px, 86vw);
+      aspect-ratio: 1 / 1;
+      margin-inline: auto;
+      isolation: isolate;
+    }
+
+    .profile-wrap::before {
+      content: "";
+      position: absolute;
+      width: 76%;
+      height: 76%;
+      left: 12%;
+      top: 9%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,.22) 0%, rgba(6,182,212,.09) 42%, transparent 72%);
+      filter: blur(26px);
+      z-index: -1;
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center bottom;
+      border-radius: 0;
+      border: 0;
+      position: relative;
+      z-index: 2;
+      background: transparent;
+      filter: drop-shadow(0 28px 35px rgba(2,8,23,.32));
+      transform: scale(1.08);
+    }
+
+    .profile-badge {
+      position: absolute;
+      z-index: 4;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 55%);
+      padding: 11px 16px;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 16px 35px rgba(15,23,42,.22);
+      white-space: nowrap;
+    }
+
+    .stat {
+      border-left: 1px solid #e2e8f0;
+      padding-left: 18px;
+    }
+
+    .stat:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    .dark .stat { border-color: #334155; }
+
+    .skill-track {
+      height: 8px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      overflow: hidden;
+    }
+
+    .dark .skill-track { background: #334155; }
+
+    .skill-fill {
+      width: 0;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2563eb, #06b6d4);
+      transition: width 1.2s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(#2563eb, #cbd5e1);
+    }
+
+    .dark .timeline::before {
+      background: linear-gradient(#3b82f6, #334155);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 42px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 3px;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      border: 3px solid var(--surface-alt);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+
+    .dark .timeline-dot { border-color: #020617; }
+
+    .project-visual {
+      height: 170px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.18) 0 2px, transparent 3px),
+        linear-gradient(135deg, #0f172a, #1e3a8a 55%, #0891b2);
+    }
+
+    .project-visual::before {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+    }
+
+    .project-icon {
+      position: relative;
+      z-index: 2;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      color: white;
+      font-size: 24px;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #dbeafe;
+    }
+
+    .dark .badge {
+      background: rgba(30,64,175,.18);
+      color: #93c5fd;
+      border-color: rgba(59,130,246,.22);
+    }
+
+    .social {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      transition: all .25s ease;
+    }
+
+    .dark .social {
+      border-color: #334155;
+      color: #cbd5e1;
+    }
+
+    .social:hover {
+      transform: translateY(-3px);
+      color: white;
+      background: #2563eb;
+      border-color: #2563eb;
+    }
+
+    .mobile-menu {
+      max-height: calc(100vh - 75px);
+      overflow-y: auto;
+    }
+
+    @media (max-width: 767px) {
+      .hero-grid { background-size: 30px 30px; }
+      .stat { border-left: 0; padding-left: 0; }
+      .profile-badge { left: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+
+<style>
+.job-duration {
+  line-height: 1.25;
+  white-space: nowrap;
+}
+</style>
+
+
+
+<style>
+  .current-job-status {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 7px;
+    margin-bottom: 3px;
+  }
+
+  .current-job-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: #22c55e;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.10);
+    animation: current-job-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes current-job-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .55; transform: scale(.85); }
+  }
+</style>
+
+<style>.current-job-status{height:7px;display:flex;align-items:center;justify-content:flex-end}.current-job-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 2px rgba(34,197,94,.12)}</style>
+
+<style>
+.current-job-duration-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+  top: -2px;
+  line-height: 1;
+  margin-top: 1px;
+}
+.current-job-duration-row .current-job-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 9999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34,197,94,.12);
+  animation: currentPulse 1.8s ease-in-out infinite;
+}
+.current-job-duration-row .job-duration {
+  margin: 0;
+  white-space: nowrap;
+}
+@keyframes currentPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .45; transform: scale(.82); }
+}
+.contact-number-link {
+  white-space: nowrap;
+}
+</style>
+
+<style>
+.education-scholarships {
+  font-size: 0.68rem;
+  line-height: 1.45;
+  font-weight: 500;
+  color: rgb(148 163 184);
+}
+</style>
+<style>
+.current-job-duration-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 5px !important;
+  position: relative;
+  top: -2px;
+  margin-top: 3px;
+  line-height: 1;
+}
+.current-job-duration-row .job-duration {
+  margin: 0 !important;
+  white-space: nowrap;
+}
+.current-job-duration-row .current-job-dot {
+  display: inline-block;
+  flex: 0 0 6px;
+}
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+<!-- NAVBAR -->
+<header class="fixed inset-x-0 top-0 z-50">
+  <nav class="glass">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6">
+      <div class="h-[72px] flex items-center justify-between">
+
+        <a href="#home" class="flex items-center gap-3 group" aria-label="Parves Bappi home">
+          <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-blue-100 dark:ring-blue-900 bg-white">
+            <img src="logo.png" alt="Parves Bappi logo"
+                 class="w-full h-full object-contain"
+                 onerror="this.parentElement.innerHTML='<span class=&quot;w-full h-full grid place-items-center font-extrabold text-blue-700&quot;>PB</span>'">
+          </div>
+          <div class="hidden sm:block">
+            <div class="font-extrabold tracking-tight">PARVES BAPPI</div>
+            <div class="text-[10px] tracking-[.18em] text-slate-500 dark:text-slate-400 normal-case">Data &amp; Analytics</div>
+          </div>
+        </a>
+
+        <div class="hidden xl:flex items-center gap-1">
+          <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold" href="#about">About</a>
+          <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold" href="#skills">Skills</a>
+          <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold" href="#services">Services</a>
+          <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold" href="#experience">Experiences</a>
+          <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold" href="#projects">Projects</a>
+          <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold" href="#education">Education</a>
+          <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold" href="#certificates">Certificates</a>
+          <a class="nav-link px-3 py-2 rounded-lg text-sm font-semibold" href="#contact">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="cv.pdf" download
+             class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl gradient-bg text-white text-sm font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-0.5 transition">
+            <i class="fa-solid fa-download text-xs"></i> CV
+          </a>
+          <button id="theme-toggle" class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70 hover:border-blue-300 transition" aria-label="Toggle dark mode">
+            <i id="theme-icon" class="fa-solid fa-moon"></i>
+          </button>
+          <button id="menu-btn" class="xl:hidden w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70 text-lg" aria-label="Open menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="mobile-menu hidden xl:hidden pb-4 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid gap-1 pt-3">
+          <a class="nav-link px-3 py-2.5 rounded-lg text-sm font-semibold" href="#about">About</a>
+          <a class="nav-link px-3 py-2.5 rounded-lg text-sm font-semibold" href="#skills">Skills</a>
+          <a class="nav-link px-3 py-2.5 rounded-lg text-sm font-semibold" href="#services">Services</a>
+          <a class="nav-link px-3 py-2.5 rounded-lg text-sm font-semibold" href="#experience">Experiences</a>
+          <a class="nav-link px-3 py-2.5 rounded-lg text-sm font-semibold" href="#projects">Projects</a>
+          <a class="nav-link px-3 py-2.5 rounded-lg text-sm font-semibold" href="#education">Education</a>
+          <a class="nav-link px-3 py-2.5 rounded-lg text-sm font-semibold" href="#certificates">Certificates</a>
+          <a class="nav-link px-3 py-2.5 rounded-lg text-sm font-semibold" href="#contact">Contact</a>
+          <a href="cv.pdf" download class="mt-2 inline-flex justify-center items-center gap-2 px-4 py-3 rounded-xl gradient-bg text-white text-sm font-bold">
+            <i class="fa-solid fa-download"></i> Download CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="home">
+
+<!-- HERO -->
+<section class="relative min-h-screen pt-28 pb-16 overflow-hidden hero-grid">
+  <div class="orb w-[420px] h-[420px] bg-blue-500 -top-40 -left-32"></div>
+  <div class="orb w-[360px] h-[360px] bg-cyan-400 top-1/2 -right-40" style="animation-delay:2.5s"></div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 min-h-[calc(100vh-7rem)] flex items-center relative z-10">
+    <div class="grid lg:grid-cols-[1.08fr_.92fr] gap-14 lg:gap-8 items-center w-full">
+
+      <div data-aos="fade-right">
+        <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900 text-blue-700 dark:text-blue-300 text-[11px] font-extrabold tracking-[.14em] uppercase mb-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Data Analyst · BI & Dashboard Developer
+        </div>
+
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-[-.045em] leading-[.98] mb-5">
+          Parves <span class="gradient-text">Bappi</span>
+        </h1>
+
+        <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400 mb-5">
+          <span class="uppercase tracking-[.15em] text-[10px] font-bold">Official Name</span>
+          <span class="mx-1">·</span> Md. Parves Ali
+        </p>
+
+        <div class="min-h-[34px] mb-5 text-lg sm:text-xl font-bold text-slate-700 dark:text-slate-200">
+          <span id="typing"></span><span class="text-blue-500">|</span>
+        </div>
+
+        <p class="max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-600 dark:text-slate-300 mb-8">
+          I transform <strong class="text-slate-900 dark:text-white">complex data</strong> into clear insights, interactive dashboards, and actionable business decisions.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 mb-10">
+          <a href="#projects" class="gradient-bg text-white px-6 py-3.5 rounded-xl font-bold text-sm shadow-xl shadow-blue-500/20 hover:-translate-y-1 transition inline-flex items-center gap-2">
+            Explore Projects <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <a href="#contact" class="px-6 py-3.5 rounded-xl font-bold text-sm border border-slate-300 dark:border-slate-700 hover:border-blue-400 hover:text-blue-600 transition inline-flex items-center gap-2">
+            Let's Connect
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <div class="stat">
+            <div class="text-2xl font-black gradient-text">5+</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Analytics Projects</div>
+          </div>
+          <div class="stat">
+            <div class="text-2xl font-black gradient-text">15+</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Dashboards Built</div>
+          </div>
+          <div class="stat">
+            <div class="text-2xl font-black gradient-text">3+</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Data Pipelines</div>
+          </div>
+          <div class="stat">
+            <div class="text-2xl font-black gradient-text">1.5+</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Years Experience</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center lg:justify-end lg:pr-6 xl:pr-12" data-aos="fade-left">
+        <div class="profile-wrap">
+          <div class="profile-ring"></div>
+          <img src="profile.png"
+               alt="Professional portrait of Parves Bappi"
+               class="profile-photo"
+               onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Parves+Bappi&size=700&background=1e3a8a&color=ffffff&bold=true'">
+          <div class="profile-badge glass text-slate-800 dark:text-white">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
+              Open to Data Analyst Opportunities
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 bg-white dark:bg-slate-900/60">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="max-w-3xl mb-14" data-aos="fade-up">
+      <span class="section-kicker">About Me</span>
+      <h2 class="section-title">Turning data into <span class="gradient-text">business clarity.</span></h2>
+    </div>
+
+    <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-12 items-start">
+      <div class="space-y-5 text-slate-600 dark:text-slate-300 leading-8" data-aos="fade-right">
+        <p>
+          I am a <strong class="text-slate-900 dark:text-white">Data Analyst</strong> with a business background, focused on analytics, business intelligence, dashboard development, and data-driven decision support.
+        </p>
+        <p>
+          In my current role as a <strong class="text-slate-900 dark:text-white">Business Analyst</strong>, I work with operational data, KPI reporting, automation, predictive analysis, and executive dashboards. I enjoy connecting business questions with practical analytical solutions.
+        </p>
+        <p>
+          My toolkit combines <strong class="text-slate-900 dark:text-white">SQL, Python, Power BI, Excel, data visualization, and automation</strong>. I am particularly interested in building reliable analytical workflows that make business data easier to understand and act on.
+        </p>
+
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="badge"><i class="fa-solid fa-location-dot mr-1"></i> Dhaka, Bangladesh</span>
+          <span class="badge"><i class="fa-solid fa-graduation-cap mr-1"></i> BBA · Jahangirnagar University</span>
+          <span class="badge"><i class="fa-solid fa-chart-line mr-1"></i> Data Analytics</span>
+          <span class="badge"><i class="fa-solid fa-briefcase mr-1"></i> Open to Opportunities</span>
+        </div>
+
+        <div class="flex gap-3 pt-3">
+          <a class="social" href="https://linkedin.com/in/md-parves-ali-558998359" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a class="social" href="https://github.com/parves-bappi" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a class="social" href="mailto:hello@parvesbappi.com" aria-label="Professional email"><i class="fa-solid fa-envelope"></i></a>
+          <a class="social" href="https://leetcode.com/parvesbappi" target="_blank" rel="noopener" aria-label="LeetCode"><i class="fa-solid fa-code"></i></a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+        <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="text-3xl font-black gradient-text">1.5+</div>
+          <div class="mt-2 text-sm font-semibold">Years Experience</div>
+        </div>
+        <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="text-3xl font-black gradient-text">25+</div>
+          <div class="mt-2 text-sm font-semibold">Certificates</div>
+        </div>
+        <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="text-3xl font-black gradient-text">4×</div>
+          <div class="mt-2 text-sm font-semibold">Merit Scholarships</div>
+        </div>
+        <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="text-3xl font-black gradient-text">15+</div>
+          <div class="mt-2 text-sm font-semibold">Tools & Platforms</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-24">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+      <span class="section-kicker">Technical Toolkit</span>
+      <h2 class="section-title">Core <span class="gradient-text">Skills</span></h2>
+      <p class="text-slate-500 dark:text-slate-400 mt-4">A practical stack for analysis, visualization, automation, and data-driven decision support.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-x-14 gap-y-8" data-aos="fade-up">
+      <div class="space-y-7">
+        <div>
+          <div class="flex justify-between mb-2 text-sm font-semibold"><span>SQL & Database Analysis</span><span class="text-blue-600">90%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="90%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm font-semibold"><span>Power BI / BI & Dashboards</span><span class="text-blue-600">99%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="99%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm font-semibold"><span>Advanced Excel / Google Sheets</span><span class="text-blue-600">93%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="93%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm font-semibold"><span>Python / Pandas</span><span class="text-blue-600">82%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="82%"></div></div>
+        </div>
+      </div>
+
+      <div class="space-y-7">
+        <div>
+          <div class="flex justify-between mb-2 text-sm font-semibold"><span>Data Visualization</span><span class="text-blue-600">99%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="99%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm font-semibold"><span>Data Automation / ETL</span><span class="text-blue-600">85%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm font-semibold"><span>Predictive Analytics</span><span class="text-blue-600">80%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="80%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm font-semibold"><span>AI / LLM Workflow Integration</span><span class="text-blue-600">85%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="skill-badges" class="flex flex-wrap justify-center gap-2.5 mt-12" data-aos="fade-up"></div>
+  </div>
+</section>
+
+<!-- SERVICES / FOCUS -->
+<section id="services" class="py-24 bg-white dark:bg-slate-900/60">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+      <span class="section-kicker">What I Do</span>
+      <h2 class="section-title">My <span class="gradient-text">Services</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="card p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up">
+        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 grid place-items-center mb-5"><i class="fa-solid fa-chart-column"></i></div>
+        <h3 class="font-extrabold text-lg mb-2">Data Analysis</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Clean, explore, analyze, and interpret business data to identify trends, drivers, and opportunities.</p>
+      </div>
+      <div class="card p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="70">
+        <div class="w-12 h-12 rounded-xl bg-cyan-100 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-300 grid place-items-center mb-5"><i class="fa-solid fa-chart-pie"></i></div>
+        <h3 class="font-extrabold text-lg mb-2">BI & Dashboards</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Build interactive KPI dashboards that make operational and management decisions easier.</p>
+      </div>
+      <div class="card p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="140">
+        <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 grid place-items-center mb-5"><i class="fa-solid fa-database"></i></div>
+        <h3 class="font-extrabold text-lg mb-2">Data Workflows</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Develop repeatable data preparation, ETL, validation, and reporting workflows.</p>
+      </div>
+      <div class="card p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="70">
+        <div class="w-12 h-12 rounded-xl bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-300 grid place-items-center mb-5"><i class="fa-solid fa-robot"></i></div>
+        <h3 class="font-extrabold text-lg mb-2">Analytics Automation</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Use Make.com, n8n, and AI integrations to reduce repetitive reporting and analysis work.</p>
+      </div>
+      <div class="card p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="140">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 grid place-items-center mb-5"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3 class="font-extrabold text-lg mb-2">Business Insights</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Translate analytical findings into concise recommendations for business stakeholders.</p>
+      </div>
+      <div class="card p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="210">
+        <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 grid place-items-center mb-5"><i class="fa-solid fa-chart-line"></i></div>
+        <h3 class="font-extrabold text-lg mb-2">Predictive Analytics</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Apply forecasting and machine-learning techniques to support planning and risk analysis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="py-24">
+  <div class="max-w-5xl mx-auto px-5 sm:px-6">
+    <div class="max-w-2xl mb-14" data-aos="fade-up">
+      <span class="section-kicker">Career</span>
+      <h2 class="section-title">Professional <span class="gradient-text">Experience</span></h2>
+    </div>
+
+    <div class="timeline space-y-10">
+
+      <article class="timeline-item" data-aos="fade-up">
+        <span class="timeline-dot"></span>
+        <div class="card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-7">
+          <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+            <div>
+              <h3 class="text-xl font-extrabold">Business Analyst (AI & Automation)</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">Baby Nutrition Limited · Dhaka, Bangladesh</p>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="badge whitespace-nowrap">Oct 2025 – Present</span>
+              <div class="current-job-duration-row" aria-label="Current position duration">
+                <span class="current-job-dot" aria-hidden="true"></span>
+                <span class="job-duration text-[11px] font-semibold text-slate-400" data-start="2025-10-01" data-end=""></span>
+              </div>
+            </div>
+          </div>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300 leading-6 list-disc list-inside">
+            <li>Build KPI and management dashboards using Power BI, Looker Studio, SQL, and business data.</li>
+            <li>Develop automated workflows with Make.com and n8n for sales, distribution, and reporting operations.</li>
+            <li>Apply predictive techniques including XGBoost and Prophet for stock planning and risk analysis.</li>
+            <li>Integrate LLM tools to support data analysis, reporting, and business insight generation.</li>
+            <li>Develop multi-regional sales dashboards across regions, zones, and distributors for root-cause analysis.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item" data-aos="fade-up">
+        <span class="timeline-dot"></span>
+        <div class="card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-7">
+          <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+            <div>
+              <h3 class="text-xl font-extrabold">Data Analyst Associate</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">Excelerate · Dubai, UAE (Remote)</p>
+            </div>
+            <div class="text-right shrink-0"><span class="badge whitespace-nowrap">Aug 2025 – Sep 2025</span><div class="job-duration text-[11px] text-slate-500 dark:text-slate-400 mt-1" data-start="2025-08-01" data-end="2025-09-30"></div></div>
+          </div>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300 leading-6 list-disc list-inside">
+            <li>Cleaned, validated, and maintained datasets to improve data quality and consistency.</li>
+            <li>Developed interactive dashboards in Power BI and Tableau for decision support.</li>
+            <li>Preprocessed datasets using Python and SQL for analysis and reporting.</li>
+            <li>Supported data-driven growth initiatives in a startup environment.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item" data-aos="fade-up">
+        <span class="timeline-dot"></span>
+        <div class="card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-7">
+          <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+            <div>
+              <h3 class="text-xl font-extrabold">Business Development Analyst</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">NextStep Advisory & Consulting · Dhaka, Bangladesh</p>
+            </div>
+            <div class="text-right shrink-0"><span class="badge whitespace-nowrap">Sep 2023 – Feb 2024</span><div class="job-duration text-[11px] text-slate-500 dark:text-slate-400 mt-1" data-start="2023-09-01" data-end="2024-02-29"></div></div>
+          </div>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300 leading-6 list-disc list-inside">
+            <li>Built financial models and ROI analyses to support commercial decisions.</li>
+            <li>Developed automated KPI tracking dashboards and reporting systems.</li>
+            <li>Conducted variance analysis and competitive benchmarking.</li>
+            <li>Built pricing and commission calculators to support sales decisions.</li>
+          </ul>
+        </div>
+      </article>
+
+      
+
+      <article class="timeline-item" data-aos="fade-up">
+        <span class="timeline-dot"></span>
+        <div class="card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-7">
+          <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+            <div>
+              <h3 class="text-xl font-extrabold">Research Assistant – Data Analyst</h3>
+              <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">Jahangirnagar University · Dhaka, Bangladesh</p>
+            </div>
+            <div class="text-right shrink-0"><span class="badge whitespace-nowrap">Sep 2022 – Mar 2023</span><div class="job-duration text-[11px] text-slate-500 dark:text-slate-400 mt-1" data-start="2022-09-01" data-end="2023-03-31"></div></div>
+          </div>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300 leading-6 list-disc list-inside">
+            <li>Collected, consolidated, cleaned, and interpreted research datasets.</li>
+            <li>Used STATA and advanced Excel for statistical analysis and reporting.</li>
+            <li>Analyzed local and global market data to support research decisions.</li>
+          </ul>
+        </div>
+      </article>
+
+      
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24 bg-white dark:bg-slate-900/60">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+      <span class="section-kicker">Portfolio</span>
+      <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+      <p class="text-slate-500 dark:text-slate-400 mt-4">Selected work demonstrating analytics, BI, automation, and predictive problem-solving.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up">
+        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-chart-column"></i></div></div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-lg mb-2">Multi-Regional KPI Dashboard</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Interactive management dashboard for regional, zone, and distributor performance analysis and root-cause investigation.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Power BI</span><span class="badge">SQL</span><span class="badge">Looker Studio</span></div>
+          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="70">
+        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-database"></i></div></div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-lg mb-2">AI Sales Automation Pipeline</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Automated workflow connecting operational data, business rules, notifications, and AI-assisted analysis for sales operations.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Make.com</span><span class="badge">n8n</span><span class="badge">LLM</span></div>
+          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="140">
+        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-chart-line"></i></div></div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-lg mb-2">Predictive Stock Forecasting</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Forecasting and predictive analysis for stock planning, demand patterns, and expiry-risk decision support.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Python</span><span class="badge">XGBoost</span><span class="badge">Prophet</span></div>
+          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up">
+        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-coins"></i></div></div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-lg mb-2">Financial ROI & Pricing Model</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Financial modeling and scenario analysis supporting ROI evaluation, pricing decisions, and commercial planning.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Excel</span><span class="badge">Financial Modeling</span></div>
+          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="70">
+        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-users"></i></div></div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-lg mb-2">Customer Churn & Risk Analysis</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Predictive analytics project using feature engineering and classification techniques to study customer and credit-risk patterns.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Python</span><span class="badge">Pandas</span><span class="badge">Scikit-Learn</span></div>
+          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="140">
+        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-flask"></i></div></div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-lg mb-2">AI-Based Supply Chain Forecasting</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Forecasting project exploring AI-assisted demand forecasting, supply-chain analytics, and inventory decision support.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Forecasting</span><span class="badge">AI</span><span class="badge">Supply Chain</span></div>
+          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View Project →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="py-24">
+  <div class="max-w-5xl mx-auto px-5 sm:px-6">
+    <div class="max-w-2xl mb-12" data-aos="fade-up">
+      <span class="section-kicker">Academic Background</span>
+      <h2 class="section-title"><span class="gradient-text">Education</span></h2>
+    </div>
+
+    <div class="card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-7 sm:p-8" data-aos="fade-up">
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h3 class="text-xl font-extrabold">Bachelor of Business Administration (BBA)</h3>
+          <p class="text-blue-600 dark:text-blue-400 font-semibold mt-1">Management Studies</p>
+          <p class="text-sm text-slate-500 mt-1">Jahangirnagar University · Dhaka, Bangladesh</p>
+        </div>
+        <span class="badge">Mar 2017 – Jul 2022</span>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 mt-6">
+        <!-- CGPA + Scholarships -->
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800 p-5">
+          <div class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-2">CGPA</div>
+          <div class="text-3xl font-black gradient-text">3.30<span class="text-sm text-slate-500">/4.00</span></div>
+          <div class="education-scholarships mt-1">
+            <div>* 4x Merit-Based Scholarships</div>
+            <div>* Admission Test Stipend-2019</div>
+          </div>
+        </div>
+
+        <!-- Relevant Coursework -->
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800 p-5">
+          <div class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-3">Relevant Coursework</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="badge">Business Math</span>
+            <span class="badge">Statistics</span>
+            <span class="badge">MIS</span>
+            <span class="badge">Micro Economics</span>
+            <span class="badge">Macro Economics</span>
+            <span class="badge">Supply Chain Management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership" class="py-24 bg-white dark:bg-slate-900/60">
+  <div class="max-w-5xl mx-auto px-5 sm:px-6">
+    <div class="max-w-2xl mb-12" data-aos="fade-up">
+      <span class="section-kicker">Beyond Work</span>
+      <h2 class="section-title">Leadership & <span class="gradient-text">Activities</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800" data-aos="fade-up">
+        <div class="flex justify-between gap-4 mb-3">
+          <div>
+            <h3 class="font-extrabold">Secretary</h3>
+            <p class="text-sm text-blue-600 dark:text-blue-400 font-semibold">Management Studies Leadership Club · JU</p>
+          </div>
+          <span class="badge">2021–2022</span>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Led leadership events, workshops, communication, and student-engagement initiatives.</p>
+      </div>
+
+      <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800" data-aos="fade-up" data-aos-delay="70">
+        <div class="flex justify-between gap-4 mb-3">
+          <div>
+            <h3 class="font-extrabold">President</h3>
+            <p class="text-sm text-blue-600 dark:text-blue-400 font-semibold">The Scholars Welfare Association</p>
+          </div>
+          <span class="badge">2019–2021</span>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Managed a 60-person volunteer team and coordinated community welfare, student support, and events.</p>
+      </div>
+
+      <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800" data-aos="fade-up">
+        <div class="flex justify-between gap-4 mb-3">
+          <div>
+            <h3 class="font-extrabold">Marketing Executive</h3>
+            <p class="text-sm text-blue-600 dark:text-blue-400 font-semibold">5th Management Week · JU</p>
+          </div>
+          <span class="badge">2017</span>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Supported event marketing, logistics, social media promotion, and partnerships.</p>
+      </div>
+
+      <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800" data-aos="fade-up" data-aos-delay="70">
+        <div class="flex justify-between gap-4 mb-3">
+          <div>
+            <h3 class="font-extrabold">Awards & Recognition</h3>
+            <p class="text-sm text-blue-600 dark:text-blue-400 font-semibold">Academic & Data Analytics</p>
+          </div>
+          <span class="badge">Selected</span>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 leading-6">Merit scholarships, competition recognition, and project-performance awards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEST SCORES -->
+
+
+<!-- CERTIFICATES -->
+<section id="certificates" class="py-24 bg-white dark:bg-slate-900/60">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <span class="section-kicker">Continuous Learning</span>
+      <h2 class="section-title"><span class="gradient-text">Certificates</span></h2>
+      <p class="text-slate-500 dark:text-slate-400 mt-4">Selected learning across data analytics, AI, automation, business analytics, and finance.</p>
+    </div>
+    <div id="cert-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+</section>
+
+<!-- RESEARCH / OTHER -->
+
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 bg-slate-950 text-white relative overflow-hidden">
+  <div class="orb w-[380px] h-[380px] bg-blue-600 -top-48 -left-40 opacity-20"></div>
+  <div class="orb w-[320px] h-[320px] bg-cyan-500 -bottom-40 -right-40 opacity-20"></div>
+
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 relative z-10">
+    <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+      <span class="inline-flex items-center gap-2 text-blue-300 text-xs font-extrabold tracking-[.16em] uppercase mb-3">
+        <span class="w-6 h-0.5 bg-blue-400"></span> Get In Touch
+      </span>
+      <h2 class="text-4xl sm:text-5xl font-black tracking-tight">Let's build something <span class="text-cyan-300">useful.</span></h2>
+      <p class="text-slate-400 mt-5 leading-7">For professional, academic, or project-related conversations, feel free to reach out.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto" data-aos="fade-up">
+
+      <a href="mailto:hello@parvesbappi.com"
+         class="min-w-0 rounded-2xl p-6 text-center border border-white/10 bg-white/5 hover:bg-white/10 hover:border-cyan-400/30 transition">
+        <i class="fa-solid fa-envelope text-2xl text-cyan-300 mb-4"></i>
+        <div class="font-bold">Email</div>
+        <div class="text-sm text-slate-400 mt-1 break-all">hello@parvesbappi.com</div>
+      </a>
+
+      <a href="https://linkedin.com/in/md-parves-ali-558998359" target="_blank" rel="noopener"
+         class="min-w-0 rounded-2xl p-6 text-center border border-white/10 bg-white/5 hover:bg-white/10 hover:border-blue-400/30 transition">
+        <i class="fa-brands fa-linkedin-in text-2xl text-blue-300 mb-4"></i>
+        <div class="font-bold">LinkedIn</div>
+        <div class="text-sm text-slate-400 mt-1">Profile</div>
+      </a>
+
+      <a href="https://github.com/parves-bappi" target="_blank" rel="noopener"
+         class="min-w-0 rounded-2xl p-6 text-center border border-white/10 bg-white/5 hover:bg-white/10 transition">
+        <i class="fa-brands fa-github text-2xl text-slate-200 mb-4"></i>
+        <div class="font-bold">GitHub</div>
+        <div class="text-sm text-slate-400 mt-1">Projects</div>
+      </a>
+
+      <a href="https://leetcode.com/parvesbappi" target="_blank" rel="noopener"
+         class="min-w-0 rounded-2xl p-6 text-center border border-white/10 bg-white/5 hover:bg-white/10 hover:border-amber-400/30 transition">
+        <i class="fa-solid fa-code text-2xl text-amber-300 mb-4"></i>
+        <div class="font-bold">LeetCode</div>
+        <div class="text-sm text-slate-400 mt-1">Profile</div>
+      </a>
+
+      <a href="https://wa.me/8801781049350" target="_blank" rel="noopener"
+         class="min-w-0 rounded-2xl p-6 text-center border border-white/10 bg-white/5 hover:bg-white/10 hover:border-emerald-400/30 transition">
+        <i class="fa-brands fa-whatsapp text-2xl text-emerald-300 mb-4"></i>
+        <div class="font-bold">WhatsApp</div>
+        <div class="text-sm text-slate-400 mt-1">Message</div>
+      </a>
+
+      <a href="tel:+8801781049350"
+         class="min-w-0 rounded-2xl p-6 text-center border border-white/10 bg-white/5 hover:bg-white/10 hover:border-violet-400/30 transition">
+        <i class="fa-solid fa-phone text-2xl text-violet-300 mb-4"></i>
+        <div class="font-bold">Contact Number</div>
+        <div class="text-sm text-slate-400 mt-1">+8801781049350</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-slate-950 border-t border-white/10 text-slate-500">
+  <div class="max-w-7xl mx-auto px-5 sm:px-6 py-7 flex items-center justify-center text-sm text-center">
+    <p>© 2026 Parves Bappi. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // AOS
+  AOS.init({
+    once: true,
+    duration: 700,
+    offset: 70,
+    easing: "ease-out-cubic"
+  });
+
+  // Typing headline
+  const titles = [
+    "Data Analyst",
+    "BI & Dashboard Developer",
+    "Data Automation Specialist"
+  ];
+
+  const typingEl = document.getElementById("typing");
+  let titleIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  function typeHeadline() {
+    const word = titles[titleIndex];
+    typingEl.textContent = deleting
+      ? word.slice(0, charIndex--)
+      : word.slice(0, charIndex++);
+
+    let delay = deleting ? 45 : 85;
+
+    if (!deleting && charIndex > word.length) {
+      deleting = true;
+      delay = 1600;
+    } else if (deleting && charIndex < 0) {
+      deleting = false;
+      charIndex = 0;
+      titleIndex = (titleIndex + 1) % titles.length;
+      delay = 350;
+    }
+
+    setTimeout(typeHeadline, delay);
+  }
+  typeHeadline();
+
+  // Theme
+  const themeButton = document.getElementById("theme-toggle");
+  const themeIcon = document.getElementById("theme-icon");
+
+  function setTheme(dark) {
+    document.documentElement.classList.toggle("dark", dark);
+    themeIcon.className = dark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    localStorage.setItem("portfolio-theme", dark ? "dark" : "light");
+  }
+
+  const savedTheme = localStorage.getItem("portfolio-theme");
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  setTheme(savedTheme ? savedTheme === "dark" : systemDark);
+
+  themeButton.addEventListener("click", () => {
+    setTheme(!document.documentElement.classList.contains("dark"));
+  });
+
+  // Mobile menu
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn.addEventListener("click", () => {
+    const isHidden = mobileMenu.classList.toggle("hidden");
+    menuBtn.setAttribute("aria-expanded", String(!isHidden));
+    menuBtn.innerHTML = isHidden
+      ? '<i class="fa-solid fa-bars"></i>'
+      : '<i class="fa-solid fa-xmark"></i>';
+  });
+
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+  });
+
+  // Skill bars
+  const skillObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.dataset.width;
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll(".skill-fill").forEach(el => skillObserver.observe(el));
+
+  // Skills
+  const skills = [
+    "Python", "SQL", "Power BI", "Looker Studio", "Tableau",
+    "Advanced Excel", "Google Sheets", "Pandas", "Scikit-Learn",
+    "STATA", "Make.com", "n8n", "XGBoost", "Prophet",
+    "Data Visualization", "ETL", "AI / LLM", "Financial Modeling"
+  ];
+
+  document.getElementById("skill-badges").innerHTML = skills.map(skill =>
+    `<span class="px-3.5 py-2 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300">${skill}</span>`
+  ).join("");
+
+  // Certificates
+  const certificates = [
+    ["AI", "AI Mastery Course", "Hablu-Programmer · Apr 2026"],
+    ["FM", "Financial Modeling Valuation", "AI Academia · Jan 2026"],
+    ["ML", "Machine Learning Fundamentals", "Free the Data Academy · May 2026"],
+    ["AWS", "AWS Cloud Fundamentals", "AI Academia · May 2026"],
+    ["N8", "n8n Automation Beginners", "AI Free Academy · Jun 2026"],
+    ["MK", "Make.com AI Automation Explorer", "Make · Jun 2026"],
+    ["PD", "Pandas Data Wrangling", "AI Free Academy · Jun 2026"],
+    ["PS", "Probability Statistics AI", "AI Free Academy · Feb 2026"],
+    ["LA", "Linear Algebra AI", "AI Product Academy · Apr 2026"],
+    ["CM", "Calculus For Machine Learning", "Creative AI Academy · Apr 2026"],
+    ["VZ", "Data Visualization Python Matplotlib", "AI Free Academy · Jun 2026"],
+    ["DA", "Data Analytics Python Finance", "AI Free Academy · Jun 2026"],
+    ["DC", "Micro AI Data Cleaning", "AI Free Academy · Jun 2026"],
+    ["AB", "AI Agent Builder", "Make · Jun 2026"],
+    ["XL", "Introduction to MS Excel", "Simplilearn · Jul 2025"],
+    ["CX", "Intro to Data Analysis – Microsoft Excel", "Coursera · May 2025"],
+    ["TS", "Introduction to Tech Sales", "Coursera · May 2025"],
+    ["TW", "Teamwork Skills – Communicating in Groups", "University of Colorado Boulder · May 2025"],
+    ["B2", "B2B and Territory Sales Strategies", "Coursera · May 2025"],
+    ["VP", "How To Visualize Data Using PowerPoint", "Coursera · May 2025"],
+    ["JT", "JSON Data Transformation", "AI Free Academy · Jun 2026"],
+    ["MC", "Micro Claude For Beginners", "Lighthouse AI Academy · May 2026"],
+    ["AA", "AI Automations Make.com & Zapier", "AI Academy"],
+    ["CF", "AI For Corporate Forecasting & Budgeting", "AI Free Academy · Apr 2025"],
+    ["EQ", "AI For Equity Analysts", "AI Free Academy · Jun 2026"],
+    ["SQ", "SQL Practice", "AI Academia · Jun 2026"]
+  ];
+
+  document.getElementById("cert-grid").innerHTML = certificates.map(([code, name, meta]) => `
+    <div class="card flex items-center gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+      <div class="w-11 h-11 shrink-0 rounded-xl gradient-bg text-white grid place-items-center text-[10px] font-black">${code}</div>
+      <div class="min-w-0">
+        <div class="font-bold text-sm leading-5">${name}</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">${meta}</div>
+      </div>
+    </div>
+  `).join("");
+
+  // Experience duration — calculated automatically from each role's dates.
+  function calculateJobDuration(startStr, endStr) {
+    const start = new Date(startStr + "T00:00:00");
+    const end = endStr ? new Date(endStr + "T00:00:00") : new Date();
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return "";
+    let months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1;
+    months = Math.max(months, 1);
+    return `${months} Month${months === 1 ? "" : "s"}`;
+  }
+  document.querySelectorAll(".job-duration[data-start]").forEach((el) => {
+    const duration = calculateJobDuration(el.dataset.start, el.dataset.end || "");
+    if (duration) el.textContent = duration;
+  });
+
+  // Dynamic current year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
