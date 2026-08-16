@@ -31,13 +31,14 @@ const portfolioData = {
 
     certificates: [
 
-        {
-            name: "AI Mastery Course",
-            organization: "Hablu-Programmer",
-            date: "Apr 2026",
-            credentialId: "20260122008420",
-            link: ""
-        }
+       {
+    code: "AI",
+    name: "AI Mastery Course",
+    organization: "Hablu-Programmer",
+    date: "Apr 2026",
+    credentialId: "20260122008420",
+    link: ""
+}
 
     ],
 
