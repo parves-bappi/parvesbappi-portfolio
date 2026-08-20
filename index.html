@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Parves Bappi</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-
+  <title>Parves Bappi | Data Analyst</title>
   <meta name="description" content="Parves Bappi — Data Analyst focused on business intelligence, dashboards, data automation, and actionable business insights.">
   <meta name="author" content="Parves Bappi">
   <meta property="og:title" content="Parves Bappi | Data Analyst">
@@ -307,6 +305,16 @@
         linear-gradient(135deg, #0f172a, #1e3a8a 55%, #0891b2);
     }
 
+    .project-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      position: relative;
+      z-index: 1;
+    }
+
     .project-visual::before {
       content: "";
       position: absolute;
@@ -487,6 +495,19 @@
   flex: 0 0 6px;
 }
 </style>
+
+<style>
+.dynamic-stat { display:inline-flex; align-items:center; gap:6px; }
+.live-green-star { color:#22c55e; font-size:10px; display:inline-block; filter:drop-shadow(0 0 3px rgba(34,197,94,.35)); animation:liveStarPulse 1.8s ease-in-out infinite; }
+@keyframes liveStarPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.55; transform:scale(.86); } }
+.certificate-logo { width:42px; height:42px; object-fit:contain; border-radius:10px; background:#fff; border:1px solid #e2e8f0; padding:6px; flex:0 0 42px; }
+.dark .certificate-logo { background:#fff; border-color:#475569; }
+.dynamic-status-dot { width:7px; height:7px; border-radius:9999px; background:#22c55e; box-shadow:0 0 0 2px rgba(34,197,94,.12); animation:currentPulse 1.8s ease-in-out infinite; flex:0 0 7px; }
+.job-type-duration { display:flex; align-items:center; justify-content:flex-end; gap:5px; margin-top:3px; line-height:1; }
+.job-type-duration .job-type { color:#94a3b8; font-size:11px; font-weight:600; white-space:nowrap; }
+.job-type-duration .job-duration { margin:0; }
+@media (max-width:767px){ .job-type-duration{justify-content:flex-start;} }
+</style>
 </head>
 
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
@@ -597,19 +618,19 @@
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 pt-6 border-t border-slate-200 dark:border-slate-800">
           <div class="stat">
-            <div class="text-2xl font-black gradient-text">5+</div>
+            <div class="text-2xl font-black gradient-text dynamic-stat"><span id="project-count">0+</span><span class="current-job-dot" aria-hidden="true"></span></div>
             <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Analytics Projects</div>
           </div>
           <div class="stat">
-            <div class="text-2xl font-black gradient-text">15+</div>
+            <div class="text-2xl font-black gradient-text dynamic-stat"><span>15+</span><span class="current-job-dot" aria-hidden="true"></span></div>
             <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Dashboards Built</div>
           </div>
           <div class="stat">
-            <div class="text-2xl font-black gradient-text">3+</div>
+            <div class="text-2xl font-black gradient-text dynamic-stat"><span>3+</span><span class="current-job-dot" aria-hidden="true"></span></div>
             <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Data Pipelines</div>
           </div>
           <div class="stat">
-            <div class="text-2xl font-black gradient-text">1.5+</div>
+            <div class="text-2xl font-black gradient-text dynamic-stat"><span id="hero-years-experience-count">0.0+</span><span class="current-job-dot" aria-hidden="true"></span></div>
             <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Years Experience</div>
           </div>
         </div>
@@ -672,11 +693,11 @@
 
       <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
         <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
-          <div class="text-3xl font-black gradient-text">1.5+</div>
+          <div class="text-3xl font-black gradient-text dynamic-stat"><span id="years-experience-count">0.0+</span><span class="current-job-dot" aria-hidden="true"></span></div>
           <div class="mt-2 text-sm font-semibold">Years Experience</div>
         </div>
         <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
-          <div class="text-3xl font-black gradient-text">25+</div>
+          <div class="text-3xl font-black gradient-text dynamic-stat"><span id="certificate-count">0+</span><span class="current-job-dot" aria-hidden="true"></span></div>
           <div class="mt-2 text-sm font-semibold">Certificates</div>
         </div>
         <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
@@ -684,7 +705,7 @@
           <div class="mt-2 text-sm font-semibold">Merit Scholarships</div>
         </div>
         <div class="card bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
-          <div class="text-3xl font-black gradient-text">15+</div>
+          <div class="text-3xl font-black gradient-text dynamic-stat"><span id="tools-platform-count">0+</span><span class="current-job-dot" aria-hidden="true"></span></div>
           <div class="mt-2 text-sm font-semibold">Tools & Platforms</div>
         </div>
       </div>
@@ -804,22 +825,28 @@
           <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
             <div>
               <h3 class="text-xl font-extrabold">Business Analyst (AI & Automation)</h3>
-              <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">Baby Nutrition Limited · Dhaka, Bangladesh</p>
+              <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">Baby Nutrition Ltd · Dhaka, Bangladesh</p>
             </div>
             <div class="text-right shrink-0">
               <span class="badge whitespace-nowrap">Oct 2025 – Present</span>
-              <div class="current-job-duration-row" aria-label="Current position duration">
+              <div class="job-type-duration" aria-label="Current position duration">
                 <span class="current-job-dot" aria-hidden="true"></span>
+                <span class="job-type">Full-time |</span>
                 <span class="job-duration text-[11px] font-semibold text-slate-400" data-start="2025-10-01" data-end=""></span>
               </div>
             </div>
           </div>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300 leading-6 list-disc list-inside">
-            <li>Build KPI and management dashboards using Power BI, Looker Studio, SQL, and business data.</li>
-            <li>Develop automated workflows with Make.com and n8n for sales, distribution, and reporting operations.</li>
-            <li>Apply predictive techniques including XGBoost and Prophet for stock planning and risk analysis.</li>
-            <li>Integrate LLM tools to support data analysis, reporting, and business insight generation.</li>
-            <li>Develop multi-regional sales dashboards across regions, zones, and distributors for root-cause analysis.</li>
+            <li>Architect and deploy enterprise AI workflows using Make.com and n8n to automate complex sales operations, streamline distribution logistics, and provide real-time inventory and stock visibility.
+              <ul class="list-[circle] list-inside ml-5 mt-2 space-y-2">
+                <li>Automate supply chain forecasting by linking inventory data to resolve low-stock issues across all SKUs, dynamically calculate accurate buffer thresholds, and trigger automated alerts for international shipments to secure a positive national stock balance.</li>
+                <li>Synthesize market and regulatory data to develop the framework for the (BSTI-certified) <strong>Halal Campaign</strong>, utilizing Looker Studio and Excel to analyze consumer response, driving a <strong>11.5% increase in sales</strong> compared to Q1 and Q2.</li>
+                <li>Engineered multi-regional sales dashboards that aggregate data across Regions (RNM), Zones (ANM), and Distributors, automating damage calculations, slab tracking, and <strong>root-cause analyses</strong> to quickly resolve local supply disruptions and boost sales.</li>
+              </ul>
+            </li>
+            <li>Build predictive and exception-based <strong>Machine Learning models (XGBoost, Prophet)</strong> to guide strategic stock planning, mitigate expiry risks, optimize returns, and drive data-backed AI decisions for <strong>supply chain forecasting</strong>.</li>
+            <li>Integrate <strong>Large Language Models (LLMs) like ChatGPT and Claude</strong> into daily workflows to automate deep data analysis, generate intelligent business insights, and fast-track operational problem-solving.</li>
+            <li>Develop automated MIS reports and dynamic KPI dashboards using <strong>Power BI, Looker Studio, and SQL</strong> to translate raw, multi-channel data into actionable intelligence for executive decision-support systems.</li>
           </ul>
         </div>
       </article>
@@ -832,7 +859,7 @@
               <h3 class="text-xl font-extrabold">Data Analyst Associate</h3>
               <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">Excelerate · Dubai, UAE (Remote)</p>
             </div>
-            <div class="text-right shrink-0"><span class="badge whitespace-nowrap">Aug 2025 – Sep 2025</span><div class="job-duration text-[11px] text-slate-500 dark:text-slate-400 mt-1" data-start="2025-08-01" data-end="2025-09-30"></div></div>
+            <div class="text-right shrink-0"><span class="badge whitespace-nowrap">Aug 2025 – Sep 2025</span><div class="job-type-duration"><span class="job-type">Part-time |</span><span class="job-duration text-[11px] text-slate-500 dark:text-slate-400" data-start="2025-08-01" data-end="2025-09-30"></span></div></div>
           </div>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300 leading-6 list-disc list-inside">
             <li>Cleaned, validated, and maintained datasets to improve data quality and consistency.</li>
@@ -851,7 +878,7 @@
               <h3 class="text-xl font-extrabold">Business Development Analyst</h3>
               <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">NextStep Advisory & Consulting · Dhaka, Bangladesh</p>
             </div>
-            <div class="text-right shrink-0"><span class="badge whitespace-nowrap">Sep 2023 – Feb 2024</span><div class="job-duration text-[11px] text-slate-500 dark:text-slate-400 mt-1" data-start="2023-09-01" data-end="2024-02-29"></div></div>
+            <div class="text-right shrink-0"><span class="badge whitespace-nowrap">Sep 2023 – Feb 2024</span><div class="job-type-duration"><span class="job-type">Part-time |</span><span class="job-duration text-[11px] text-slate-500 dark:text-slate-400" data-start="2023-09-01" data-end="2024-02-29"></span></div></div>
           </div>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300 leading-6 list-disc list-inside">
             <li>Built financial models and ROI analyses to support commercial decisions.</li>
@@ -872,7 +899,7 @@
               <h3 class="text-xl font-extrabold">Research Assistant – Data Analyst</h3>
               <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">Jahangirnagar University · Dhaka, Bangladesh</p>
             </div>
-            <div class="text-right shrink-0"><span class="badge whitespace-nowrap">Sep 2022 – Mar 2023</span><div class="job-duration text-[11px] text-slate-500 dark:text-slate-400 mt-1" data-start="2022-09-01" data-end="2023-03-31"></div></div>
+            <div class="text-right shrink-0"><span class="badge whitespace-nowrap">Sep 2022 – Mar 2023</span><div class="job-type-duration"><span class="job-type">Part-time |</span><span class="job-duration text-[11px] text-slate-500 dark:text-slate-400" data-start="2022-09-01" data-end="2023-03-31"></span></div></div>
           </div>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300 leading-6 list-disc list-inside">
             <li>Collected, consolidated, cleaned, and interpreted research datasets.</li>
@@ -900,62 +927,82 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
       <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up">
-        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-chart-column"></i></div></div>
+        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-chart-line"></i></div></div>
         <div class="p-6">
-          <h3 class="font-extrabold text-lg mb-2">Multi-Regional KPI Dashboard</h3>
-          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Interactive management dashboard for regional, zone, and distributor performance analysis and root-cause investigation.</p>
-          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Power BI</span><span class="badge">SQL</span><span class="badge">Looker Studio</span></div>
-          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+          <h3 class="font-extrabold text-lg mb-2">Demand Forecasting & Inventory Optimization</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Time-series forecasting project comparing ARIMA, Prophet, and XGBoost to support demand planning and inventory optimization.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Python</span><span class="badge">ARIMA</span><span class="badge">Prophet</span><span class="badge">XGBoost</span></div>
+          <a href="https://github.com/parves-bappi/demand-forecasting-inventory-optimization" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
         </div>
       </article>
 
       <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="70">
         <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-database"></i></div></div>
         <div class="p-6">
-          <h3 class="font-extrabold text-lg mb-2">AI Sales Automation Pipeline</h3>
-          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Automated workflow connecting operational data, business rules, notifications, and AI-assisted analysis for sales operations.</p>
-          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Make.com</span><span class="badge">n8n</span><span class="badge">LLM</span></div>
-          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+          <h3 class="font-extrabold text-lg mb-2">Evaluate a Manufacturing Process — SQL</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">SQL-based manufacturing analytics covering production performance, downtime, maintenance, quality, inspections, defects, and root-cause analysis.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">SQL</span><span class="badge">SQL Server</span><span class="badge">Manufacturing Analytics</span></div>
+          <a href="https://github.com/parves-bappi/Evaluate-a-Manufacturing-Process---SQL" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
         </div>
       </article>
 
       <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="140">
-        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-chart-line"></i></div></div>
+        <div class="project-visual"><img src="project-assets/credit-loan-dashboard.png" alt="Credit and Loan Analytics Dashboard" class="project-image" loading="lazy"></div>
         <div class="p-6">
-          <h3 class="font-extrabold text-lg mb-2">Predictive Stock Forecasting</h3>
-          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Forecasting and predictive analysis for stock planning, demand patterns, and expiry-risk decision support.</p>
-          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Python</span><span class="badge">XGBoost</span><span class="badge">Prophet</span></div>
-          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+          <h3 class="font-extrabold text-lg mb-2">Credit & Loan Analytics Dashboard</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Python analytics dashboard for evaluating loan portfolios, credit patterns, risk indicators, and financial performance.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Python</span><span class="badge">Pandas</span><span class="badge">Dashboard</span></div>
+          <a href="https://github.com/parves-bappi/Credit-Loan-Analytics-Dashboard-using-Python" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
         </div>
       </article>
 
       <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up">
-        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-coins"></i></div></div>
+        <div class="project-visual"><img src="project-assets/supply-chain-dashboard.png" alt="Supply Chain Intelligence Data Studio Dashboard" class="project-image" loading="lazy"></div>
         <div class="p-6">
-          <h3 class="font-extrabold text-lg mb-2">Financial ROI & Pricing Model</h3>
-          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Financial modeling and scenario analysis supporting ROI evaluation, pricing decisions, and commercial planning.</p>
-          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Excel</span><span class="badge">Financial Modeling</span></div>
-          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+          <h3 class="font-extrabold text-lg mb-2">Supply Chain Intelligence — Data Studio Dashboard</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Supply chain intelligence dashboard for monitoring operational performance, distribution, inventory, and business KPIs.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Looker Studio</span><span class="badge">Data Analytics</span><span class="badge">Supply Chain</span></div>
+          <a href="https://github.com/parves-bappi/Supply-Chain-Intelligence--Data-Studio-Dashboard" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
         </div>
       </article>
 
       <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="70">
-        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-users"></i></div></div>
+        <div class="project-visual"><img src="project-assets/tableau-hr-dashboard.png" alt="Tableau HR Analytics Dashboard" class="project-image" loading="lazy"></div>
         <div class="p-6">
-          <h3 class="font-extrabold text-lg mb-2">Customer Churn & Risk Analysis</h3>
-          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Predictive analytics project using feature engineering and classification techniques to study customer and credit-risk patterns.</p>
-          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Python</span><span class="badge">Pandas</span><span class="badge">Scikit-Learn</span></div>
-          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+          <h3 class="font-extrabold text-lg mb-2">Tableau HR Analytics Dashboard</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Interactive HR analytics dashboard for workforce trends, employee metrics, and management decision support.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Tableau</span><span class="badge">HR Analytics</span><span class="badge">Data Visualization</span></div>
+          <a href="https://github.com/parves-bappi/Tableau-HR-Analytics-Dashboard" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
         </div>
       </article>
 
       <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="140">
-        <div class="project-visual flex items-center justify-center"><div class="project-icon"><i class="fa-solid fa-flask"></i></div></div>
+        <div class="project-visual"><img src="project-assets/amazon-powerbi-dashboard.png" alt="Power BI Amazon Sales Analysis and Dashboard" class="project-image" loading="lazy"></div>
         <div class="p-6">
-          <h3 class="font-extrabold text-lg mb-2">AI-Based Supply Chain Forecasting</h3>
-          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Forecasting project exploring AI-assisted demand forecasting, supply-chain analytics, and inventory decision support.</p>
-          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Forecasting</span><span class="badge">AI</span><span class="badge">Supply Chain</span></div>
-          <a href="https://github.com/parves-bappi" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View Project →</a>
+          <h3 class="font-extrabold text-lg mb-2">Power BI Amazon Sales Analysis & Dashboard</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Interactive Power BI dashboard analyzing Amazon sales performance, product trends, revenue, and business KPIs.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Power BI</span><span class="badge">DAX</span><span class="badge">Sales Analytics</span></div>
+          <a href="https://github.com/parves-bappi/Power-BI-Amazon-Sales-Analysis-and-Dashboard" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up">
+        <div class="project-visual"><img src="project-assets/excel-sales-dashboard.png" alt="Excel Sales Performance Analysis Dashboard" class="project-image" loading="lazy"></div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-lg mb-2">Excel Sales Performance Analysis Dashboard</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Excel-based sales performance dashboard for analyzing revenue, trends, KPIs, forecasting, and business performance.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Excel</span><span class="badge">Pivot Tables</span><span class="badge">Dashboard</span></div>
+          <a href="https://github.com/parves-bappi/Excel-Sales-Performance-Analysis-Dashboard" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" data-aos="fade-up" data-aos-delay="70">
+        <div class="project-visual"><img src="project-assets/quick-powerbi-dashboard.png" alt="Quick Power BI Dashboard" class="project-image" loading="lazy"></div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-lg mb-2">Quick Power BI Dashboard</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-6 mb-4">Compact Power BI dashboard demonstrating KPI reporting, interactive visuals, and fast business performance analysis.</p>
+          <div class="flex flex-wrap gap-2 mb-5"><span class="badge">Power BI</span><span class="badge">DAX</span><span class="badge">KPI Dashboard</span></div>
+          <a href="https://github.com/parves-bappi/Quick-Power-Bi-dashboard" target="_blank" rel="noopener" class="text-sm font-bold text-blue-600 hover:text-blue-800">View GitHub →</a>
         </div>
       </article>
 
@@ -1260,44 +1307,57 @@
   ).join("");
 
   // Certificates
+  // Certificate information retained from the current website certificate list.
+  // Provider logos are loaded online from the provider's official website domain.
   const certificates = [
-    ["AI", "AI Mastery Course", "Hablu-Programmer · Apr 2026"],
-    ["FM", "Financial Modeling Valuation", "AI Academia · Jan 2026"],
-    ["ML", "Machine Learning Fundamentals", "Free the Data Academy · May 2026"],
-    ["AWS", "AWS Cloud Fundamentals", "AI Academia · May 2026"],
-    ["N8", "n8n Automation Beginners", "AI Free Academy · Jun 2026"],
-    ["MK", "Make.com AI Automation Explorer", "Make · Jun 2026"],
-    ["PD", "Pandas Data Wrangling", "AI Free Academy · Jun 2026"],
-    ["PS", "Probability Statistics AI", "AI Free Academy · Feb 2026"],
-    ["LA", "Linear Algebra AI", "AI Product Academy · Apr 2026"],
-    ["CM", "Calculus For Machine Learning", "Creative AI Academy · Apr 2026"],
-    ["VZ", "Data Visualization Python Matplotlib", "AI Free Academy · Jun 2026"],
-    ["DA", "Data Analytics Python Finance", "AI Free Academy · Jun 2026"],
-    ["DC", "Micro AI Data Cleaning", "AI Free Academy · Jun 2026"],
-    ["AB", "AI Agent Builder", "Make · Jun 2026"],
-    ["XL", "Introduction to MS Excel", "Simplilearn · Jul 2025"],
-    ["CX", "Intro to Data Analysis – Microsoft Excel", "Coursera · May 2025"],
-    ["TS", "Introduction to Tech Sales", "Coursera · May 2025"],
-    ["TW", "Teamwork Skills – Communicating in Groups", "University of Colorado Boulder · May 2025"],
-    ["B2", "B2B and Territory Sales Strategies", "Coursera · May 2025"],
-    ["VP", "How To Visualize Data Using PowerPoint", "Coursera · May 2025"],
-    ["JT", "JSON Data Transformation", "AI Free Academy · Jun 2026"],
-    ["MC", "Micro Claude For Beginners", "Lighthouse AI Academy · May 2026"],
-    ["AA", "AI Automations Make.com & Zapier", "AI Academy"],
-    ["CF", "AI For Corporate Forecasting & Budgeting", "AI Free Academy · Apr 2025"],
-    ["EQ", "AI For Equity Analysts", "AI Free Academy · Jun 2026"],
-    ["SQ", "SQL Practice", "AI Academia · Jun 2026"]
+    ["AI", "AI Mastery Course", "Hablu-Programmer", "Apr 2026", "", "", "hablu-programmer.com"],
+    ["FM", "Financial Modeling Valuation", "AI Academia", "Jan 2026", "", "", "aiacademia.in"],
+    ["ML", "Machine Learning Fundamentals", "Free the Data Academy", "May 2026", "", "", "ftdacademy.thinkific.com"],
+    ["AWS", "AWS Cloud Fundamentals", "AI Academia", "May 2026", "", "", "aiacademia.in"],
+    ["N8", "n8n Automation Beginners", "AI Free Academy", "Jun 2026", "", "", "freeacademy.ai"],
+    ["MK", "Make.com AI Automation Explorer", "Make", "Jun 2026", "", "", "make.com"],
+    ["PD", "Pandas Data Wrangling", "AI Free Academy", "Jun 2026", "", "", "freeacademy.ai"],
+    ["PS", "Probability Statistics AI", "AI Free Academy", "Feb 2026", "", "", "freeacademy.ai"],
+    ["LA", "Linear Algebra AI", "AI Product Academy", "Apr 2026", "", "", "aiproduct.academy"],
+    ["CM", "Calculus For Machine Learning", "Creative AI Academy", "Apr 2026", "", "", "creative-ai.academy"],
+    ["VZ", "Data Visualization Python Matplotlib", "AI Free Academy", "Jun 2026", "", "", "freeacademy.ai"],
+    ["DA", "Data Analytics Python Finance", "AI Free Academy", "Jun 2026", "", "", "freeacademy.ai"],
+    ["DC", "Micro AI Data Cleaning", "AI Free Academy", "Jun 2026", "", "", "freeacademy.ai"],
+    ["AB", "AI Agent Builder", "Make", "Jun 2026", "", "", "make.com"],
+    ["XL", "Introduction to MS Excel", "Simplilearn", "Jul 2025", "", "", "simplilearn.com"],
+    ["CX", "Intro to Data Analysis – Microsoft Excel", "Coursera", "May 2025", "", "", "coursera.org"],
+    ["TS", "Introduction to Tech Sales", "Coursera", "May 2025", "", "", "coursera.org"],
+    ["TW", "Teamwork Skills – Communicating in Groups", "University of Colorado Boulder", "May 2025", "", "", "colorado.edu"],
+    ["B2", "B2B and Territory Sales Strategies", "Coursera", "May 2025", "", "", "coursera.org"],
+    ["VP", "How To Visualize Data Using PowerPoint", "Coursera", "May 2025", "", "", "coursera.org"],
+    ["JT", "JSON Data Transformation", "AI Free Academy", "Jun 2026", "", "", "freeacademy.ai"],
+    ["MC", "Micro Claude For Beginners", "Lighthouse AI Academy", "May 2026", "", "", "lighthouseacademy.ai"],
+    ["AA", "AI Automations Make.com & Zapier", "AI Academy", "", "", "", "ai-academy.com"],
+    ["CF", "AI For Corporate Forecasting & Budgeting", "AI Free Academy", "Apr 2025", "", "", "freeacademy.ai"],
+    ["EQ", "AI For Equity Analysts", "AI Free Academy", "Jun 2026", "", "", "freeacademy.ai"],
+    ["SQ", "SQL Practice", "AI Academia", "Jun 2026", "", "", "aiacademia.in"]
   ];
 
-  document.getElementById("cert-grid").innerHTML = certificates.map(([code, name, meta]) => `
+  const providerLogo = (domain) => `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+
+  document.getElementById("cert-grid").innerHTML = certificates.map(([code, name, provider, issued, credentialId, credentialUrl, logoDomain]) => `
     <div class="card flex items-center gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-      <div class="w-11 h-11 shrink-0 rounded-xl gradient-bg text-white grid place-items-center text-[10px] font-black">${code}</div>
+      <img src="${providerLogo(logoDomain)}" alt="${provider} logo" class="certificate-logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <div class="w-11 h-11 shrink-0 rounded-xl gradient-bg text-white grid place-items-center text-[10px] font-black" style="display:none">${code}</div>
       <div class="min-w-0">
         <div class="font-bold text-sm leading-5">${name}</div>
-        <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">${meta}</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">${provider}${issued ? ` · ${issued}` : ""}</div>
+        ${credentialId ? `<div class="text-[10px] text-slate-400 mt-1">Credential ID: ${credentialId}</div>` : ""}
+        ${credentialUrl ? `<a href="${credentialUrl}" target="_blank" rel="noopener" class="text-[10px] text-blue-600 dark:text-blue-400 font-semibold mt-1 inline-block">View credential</a>` : ""}
       </div>
     </div>
   `).join("");
+
+  // Certificate count updates automatically whenever the certificate array changes.
+  document.getElementById("certificate-count").textContent = `${certificates.length}+`;
+
+  // Tools & Platforms count is derived from the skills list above.
+  document.getElementById("tools-platform-count").textContent = `${skills.length}+`;
 
   // Experience duration — calculated automatically from each role's dates.
   function calculateJobDuration(startStr, endStr) {
@@ -1312,6 +1372,28 @@
     const duration = calculateJobDuration(el.dataset.start, el.dataset.end || "");
     if (duration) el.textContent = duration;
   });
+
+  // Total professional experience is calculated from all listed roles, in months.
+  // Each month is automatically reflected as time passes.
+  const experiencePeriods = [
+    ["2025-10-01", ""],
+    ["2025-08-01", "2025-09-30"],
+    ["2023-09-01", "2024-02-29"],
+    ["2022-09-01", "2023-03-31"]
+  ];
+  const totalExperienceMonths = experiencePeriods.reduce((total, [startStr, endStr]) => {
+    const start = new Date(startStr + "T00:00:00");
+    const end = endStr ? new Date(endStr + "T00:00:00") : new Date();
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return total;
+    return total + Math.max(1, (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1);
+  }, 0);
+  const liveYearsExperience = `${(totalExperienceMonths / 12).toFixed(1)}+`;
+  document.getElementById("years-experience-count").textContent = liveYearsExperience;
+  document.getElementById("hero-years-experience-count").textContent = liveYearsExperience;
+
+  // Total project count is derived from the actual project cards on the page.
+  const totalProjects = document.querySelectorAll('#projects > div > div > article').length;
+  document.getElementById("project-count").textContent = `${totalProjects}+`;
 
   // Dynamic current year
   document.getElementById("year").textContent = new Date().getFullYear();
